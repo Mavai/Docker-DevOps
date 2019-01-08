@@ -42,5 +42,5 @@ apt-get install curl
 
 ## Exercise 4
 
-- Docfile [HERE](exercise_4/Docfile)
+- Dockerfile [HERE](exercise_4/Dockerfile)
 - Command to run container: `docker run -it curler`
