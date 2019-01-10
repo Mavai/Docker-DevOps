@@ -42,5 +42,85 @@ apt-get install curl
 
 ## Exercise 4
 
-- Dockerfile [HERE](exercise_4/Dockerfile)
+- Dockerfile:
+
+```
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y curl
+CMD read website; sleep 3; curl http://$website;
+```
+
 - Command to run container: `docker run -it curler`
+
+## Exercise 5
+
+- Dockerfile:
+
+```
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+COPY . .
+RUN npm install
+EXPOSE 5000
+CMD ["npm", "start"]
+```
+
+- Command to run container: `docker run -p 5000:5000 frontend-example`
+
+## Exercise 6
+
+- Dockerfile:
+
+```
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+COPY . .
+RUN npm install
+EXPOSE 8000
+CMD ["npm", "start"]
+```
+
+- Command to run container `docker run -p 8000:8000 backend-example`
+
+## Exercise 7
+
+- Front-end dockerfile:
+
+```
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+COPY package.json .
+COPY . .
+RUN npm install
+EXPOSE 5000
+ENV API_URL="http://localhost:8000/"
+CMD ["npm", "start"]
+```
+
+- Backend dockerfile:
+
+```
+FROM ubuntu:16.04
+
+RUN apt-get update && apt-get install -y curl
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
+RUN apt install -y nodejs
+COPY . .
+RUN npm install
+EXPOSE 8000
+ENV FRONT_URL="http://localhost:5000"
+CMD ["npm", "start"]
+```
+
+- Command to run front-end container: `docker run -d -p 5000:5000 frontend-example`
+- Command to run backend container: `docker run -d -p 8000:8000 backend-example`
