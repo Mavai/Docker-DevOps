@@ -12,7 +12,7 @@ a26426403f89        mongo               "docker-entrypoint.s…"   10 minutes ag
 
 ```
 
-## Exercise 2
+## Exercise 1.2
 
 ```
 docker images
@@ -25,7 +25,7 @@ docker ps -a
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 ```
 
-## Exercise 3
+## Exercise 1.3
 
 Command to start container:
 
@@ -40,7 +40,7 @@ apt-get update
 apt-get install curl
 ```
 
-## Exercise 4
+## Exercise 1.4
 
 - Dockerfile:
 
@@ -53,7 +53,7 @@ CMD read website; sleep 3; curl http://$website;
 
 - Command to run container: `docker run -it curler`
 
-## Exercise 5
+## Exercise 1.5
 
 - Dockerfile:
 
@@ -71,7 +71,7 @@ CMD ["npm", "start"]
 
 - Command to run container: `docker run -p 5000:5000 frontend-example`
 
-## Exercise 6
+## Exercise 1.6
 
 - Dockerfile:
 
@@ -89,7 +89,7 @@ CMD ["npm", "start"]
 
 - Command to run container `docker run -p 8000:8000 backend-example`
 
-## Exercise 7
+## Exercise 1.7
 
 - Front-end dockerfile:
 
@@ -99,7 +99,6 @@ FROM ubuntu:16.04
 RUN apt-get update && apt-get install -y curl
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
 RUN apt install -y nodejs
-COPY package.json .
 COPY . .
 RUN npm install
 EXPOSE 5000
@@ -124,3 +123,7 @@ CMD ["npm", "start"]
 
 - Command to run front-end container: `docker run -d -p 5000:5000 frontend-example`
 - Command to run backend container: `docker run -d -p 8000:8000 backend-example`
+
+## Exercise 1.8
+
+- Link to [DockerHub repo](https://cloud.docker.com/repository/docker/mavai/hello_world_react)
